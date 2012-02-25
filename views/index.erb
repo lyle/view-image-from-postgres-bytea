@@ -1,0 +1,23 @@
+Going to step through the shows...
+<hr>
+<% if @shows then%>
+	<% @shows.each  do |show| %>
+	    <h3><%= show.title %></h3>
+	    <p><!--%= show.abstract %--></p>
+	
+	    <p><%= mtext_process(show.abstract) %></p>
+	    <pre>'<%= show.to_param %>'</pre>
+		<%= teaser_image(show) %>
+		<ul>
+		<% show.imagesshow.images.each do |img| %>
+			<li><%= img.name%> <img src='/shows/<%=show.to_param%>/<%= img.name%>' />"</li>
+	    <% end %>
+		</ul>
+	<p><%= mtext_process(show.content) unless  show.content.nil? %></p>
+	<% end %>
+<% else %>
+  Shows is empty - or null
+<% end %>
+
+
+<hr>
